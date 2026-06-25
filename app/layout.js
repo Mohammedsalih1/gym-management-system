@@ -8,7 +8,7 @@ const cairo = Cairo({
   variable: "--font-cairo",
 });
 export const metadata = {
-  title: "يوم اللياقة | Fitness Day",
+  title: "FITBOX",
   description: "نظام إدارة الصالة الرياضية",
 };
 
