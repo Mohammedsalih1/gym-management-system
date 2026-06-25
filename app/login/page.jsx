@@ -3,31 +3,32 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const DEMO_EMAIL = "admin@fitBOX.com";
-const DEMO_PASSWORD = "123456";
+// const DEMO_EMAIL = "admin@fitBOX.com";
+// const DEMO_PASSWORD = "123456";
 export default function LoginPage() {
     const router = useRouter();
 
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   
   function handleSubmit(e) {
     e.preventDefault();
-    setError("");
+    // setError("");
     setLoading(true);
     setTimeout(() => {
-      if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+      router.push("/Dashboard");
 
-        localStorage.setItem("isLoggedIn", "true");
-        router.push("/Dashboard");
-        // navigate("/Dashboard");
-      } else {
-        setError("البريد الإلكتروني أو كلمة المرور غير صحيحة");
-      }
+      // if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+
+      //   localStorage.setItem("isLoggedIn", "true");
+      //   // navigate("/Dashboard");
+      // } else {
+      //   setError("البريد الإلكتروني أو كلمة المرور غير صحيحة");
+      // }
       setLoading(false);
     }, 800);
   }
@@ -164,96 +165,9 @@ export default function LoginPage() {
                 سجّل الدخول للوصول إلى لوحة التحكم وإدارة الصالة بسهولة
               </p>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Email */}
-              <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-zinc-300">البريد الإلكتروني</label>
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@fitnessday.com"
-                    required
-                    dir="ltr"
-                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-zinc-600 outline-none transition-all duration-200"
-                    style={{ background: "rgba(39,39,42,0.8)", border: "1px solid rgba(63,63,70,0.8)" }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(249,115,22,0.5)";
-                      e.currentTarget.style.boxShadow = "0 0 0 3px rgba(249,115,22,0.1)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(63,63,70,0.8)";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  />
-                  <div className="absolute top-1/2 -translate-y-1/2 left-3 text-zinc-500">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              {/* Password */}
-              <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-zinc-300">كلمة المرور</label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    required
-                    dir="ltr"
-                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-zinc-600 outline-none transition-all duration-200"
-                    style={{ background: "rgba(39,39,42,0.8)", border: "1px solid rgba(63,63,70,0.8)" }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(249,115,22,0.5)";
-                      e.currentTarget.style.boxShadow = "0 0 0 3px rgba(249,115,22,0.1)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.border = "1px solid rgba(63,63,70,0.8)";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  />
-                  {/* Toggle show/hide */}
-                  <button type="button" onClick={() => setShowPassword(!showPassword)}
-                    className="absolute top-1/2 -translate-y-1/2 left-3 text-zinc-500 hover:text-zinc-300 transition-colors">
-                    {showPassword ? (
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                      </svg>
-                    ) : (
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                    )}
-                  </button>
-                  {/* Lock icon */}
-                  <div className="absolute top-1/2 -translate-y-1/2 right-3 text-zinc-500">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round"
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              {/* Error message */}
-              {error && (
-                <div className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium animate-fade-in"
-                  style={{ background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.25)", color: "#fca5a5" }}>
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {error}
-                </div>
-              )}
+
               {/* Submit button */}
-              <button
+              <button onClick={handleSubmit}
                 type="submit"
                 disabled={loading}
                 className="w-full py-3.5 rounded-xl text-white font-bold text-base transition-all duration-300 mt-2 relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
@@ -291,23 +205,115 @@ export default function LoginPage() {
                   </span>
                 )}
               </button>
-            </form>
             {/* Demo credentials */}
-            <div className="mt-6 p-4 rounded-xl"
+            {/* <div className="mt-6 p-4 rounded-xl"
               style={{ background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.12)" }}>
               <p className="text-zinc-500 text-xs font-medium mb-2">بيانات تجريبية:</p>
               <div className="space-y-1">
                 <p className="text-zinc-400 text-xs font-mono" dir="ltr">📧 admin@fitBOX.com</p>
                 <p className="text-zinc-400 text-xs font-mono" dir="ltr">🔑 123456</p>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* Footer */}
           <p className="text-center text-zinc-600 text-xs mt-6">
-            © 2025 FITBOX  — جميع الحقوق محفوظة
+            © 2026 FITBOX  — جميع الحقوق محفوظة
           </p>
         </div>
       </div>
     </div>
   );
 }
+
+
+// {
+//   <form onSubmit={handleSubmit} className="space-y-5">
+//   {/* Email */}
+//   <div className="space-y-1.5">
+//     <label className="block text-sm font-semibold text-zinc-300">البريد الإلكتروني</label>
+//     <div className="relative">
+//       <input
+//         type="email"
+//         value={email}
+//         onChange={(e) => setEmail(e.target.value)}
+//         placeholder="admin@fitnessday.com"
+//         required
+//         dir="ltr"
+//         className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-zinc-600 outline-none transition-all duration-200"
+//         style={{ background: "rgba(39,39,42,0.8)", border: "1px solid rgba(63,63,70,0.8)" }}
+//         onFocus={(e) => {
+//           e.currentTarget.style.border = "1px solid rgba(249,115,22,0.5)";
+//           e.currentTarget.style.boxShadow = "0 0 0 3px rgba(249,115,22,0.1)";
+//         }}
+//         onBlur={(e) => {
+//           e.currentTarget.style.border = "1px solid rgba(63,63,70,0.8)";
+//           e.currentTarget.style.boxShadow = "none";
+//         }}
+//       />
+//       <div className="absolute top-1/2 -translate-y-1/2 left-3 text-zinc-500">
+//         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//           <path strokeLinecap="round" strokeLinejoin="round"
+//             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//         </svg>
+//       </div>
+//     </div>
+//   </div>
+//   {/* Password */}
+//   <div className="space-y-1.5">
+//     <label className="block text-sm font-semibold text-zinc-300">كلمة المرور</label>
+//     <div className="relative">
+//       <input
+//         type={showPassword ? "text" : "password"}
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//         placeholder="••••••••"
+//         required
+//         dir="ltr"
+//         className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-zinc-600 outline-none transition-all duration-200"
+//         style={{ background: "rgba(39,39,42,0.8)", border: "1px solid rgba(63,63,70,0.8)" }}
+//         onFocus={(e) => {
+//           e.currentTarget.style.border = "1px solid rgba(249,115,22,0.5)";
+//           e.currentTarget.style.boxShadow = "0 0 0 3px rgba(249,115,22,0.1)";
+//         }}
+//         onBlur={(e) => {
+//           e.currentTarget.style.border = "1px solid rgba(63,63,70,0.8)";
+//           e.currentTarget.style.boxShadow = "none";
+//         }}
+//       />
+//       {/* Toggle show/hide */}
+//       <button type="button" onClick={() => setShowPassword(!showPassword)}
+//         className="absolute top-1/2 -translate-y-1/2 left-3 text-zinc-500 hover:text-zinc-300 transition-colors">
+//         {showPassword ? (
+//           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//             <path strokeLinecap="round" strokeLinejoin="round"
+//               d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+//           </svg>
+//         ) : (
+//           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+//             <path strokeLinecap="round" strokeLinejoin="round"
+//               d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+//           </svg>
+//         )}
+//       </button>
+//       {/* Lock icon */}
+//       <div className="absolute top-1/2 -translate-y-1/2 right-3 text-zinc-500">
+//         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//           <path strokeLinecap="round" strokeLinejoin="round"
+//             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+//         </svg>
+//       </div>
+//     </div>
+//   </div>
+//   {/* Error message */}
+//   {error && (
+//     <div className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium animate-fade-in"
+//       style={{ background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.25)", color: "#fca5a5" }}>
+//       <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+//         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+//       </svg>
+//       {error}
+//     </div>
+//   )}
+// </form>
+// }
