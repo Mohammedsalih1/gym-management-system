@@ -1,4 +1,4 @@
-// import { mockMembers } from "../data/Mockdata";
+import { mockMembers } from "../data/Mockdata";
 
 // const STORAGE_KEY = "fitness-day-members";
 
